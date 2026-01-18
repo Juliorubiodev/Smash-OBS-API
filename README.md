@@ -25,9 +25,6 @@ Sistema de selección de escenarios para torneos de Super Smash Bros. Ultimate c
 ## 🚀 Instalación
 
 ```bash
-# Clonar o descargar el proyecto
-cd smash-obs-api
-
 # Instalar dependencias
 npm install
 
@@ -207,15 +204,13 @@ smash-obs-api/
 
 ## 🛣️ Roadmap
 
-Funcionalidades opcionales para futuras versiones:
+Funcionalidades para futuras versiones:
 
-- [ ] **Nombres de jugadores**: Mostrar Player 1 vs Player 2
-- [ ] **Historial de sets**: Guardar resultados en archivo/DB
+- [ ] **Diferentes Rulesets**: Americano y Japones
 - [ ] **Sonidos**: Efectos al banear/seleccionar
 - [ ] **Temas personalizables**: Light mode, colores de torneo
 - [ ] **Panel admin**: Dashboard para múltiples setups
 - [ ] **Integración Start.gg**: Importar bracket automáticamente
-- [ ] **Animaciones mejoradas**: Transiciones más suaves
 - [ ] **PWA**: Instalar como app en tablet
 
 ---
@@ -228,6 +223,6 @@ MIT License - Libre para uso personal y comercial.
 
 ## 🙏 Créditos
 
-Desarrollado para la comunidad de Smash Bros en España.
+Desarrollado para la comunidad de Smash Bros en España por Julio Cesar Rubio Montaño o "Coyote".
 
 **Escenarios**: Super Smash Bros. Ultimate © Nintendo

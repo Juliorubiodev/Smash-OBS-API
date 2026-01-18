@@ -1,6 +1,6 @@
 /**
  * Smash OBS API - Control UI
- * Made by: Julio Rubio
+ * Made by: Julio Rubio 
  */
 
 /* ============================================================================
