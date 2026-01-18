@@ -1,0 +1,511 @@
+/**
+ * Smash OBS API - Control UI Styles
+ * Made by: Julio Rubio
+ */
+
+/* ============================================================================
+   CONTROL UI - Tablet-optimized Stage Selection
+   ============================================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: #252540;
+  --accent-winner: #e63946;
+  --accent-loser: #457b9d;
+  --accent-pick: #2ecc71;
+  --accent-ban: #e74c3c;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --border-radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f39c12;
+  animation: pulse 1.5s infinite;
+}
+
+.connection-status.connected .status-dot {
+  background: #2ecc71;
+  animation: none;
+}
+
+.connection-status.disconnected .status-dot {
+  background: #e74c3c;
+  animation: none;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ============================================================================
+   MODE TOGGLE
+   ============================================================================ */
+
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+  background: var(--bg-card);
+  padding: 6px;
+  border-radius: var(--border-radius);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, var(--accent-winner) 0%, #c0392b 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}
+
+.mode-btn:not(.active):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   PHASE INDICATOR
+   ============================================================================ */
+
+.phase-indicator {
+  text-align: center;
+  padding: 16px;
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--accent-winner);
+}
+
+.phase-indicator.loser-phase {
+  border-left-color: var(--accent-loser);
+}
+
+.phase-indicator.pick-phase {
+  border-left-color: var(--accent-pick);
+}
+
+.phase-indicator.done-phase {
+  border-left-color: #9b59b6;
+}
+
+.phase-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.phase-counter {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ============================================================================
+   AVAILABLE STAGES
+   ============================================================================ */
+
+.available-stages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.available-label {
+  color: var(--text-secondary);
+}
+
+.available-list {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ============================================================================
+   STAGE GRID
+   ============================================================================ */
+
+.stage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  flex: 1;
+}
+
+.stage-card {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 3px solid transparent;
+}
+
+.stage-card:active {
+  transform: scale(0.95);
+}
+
+.stage-card:hover:not(.banned):not(.picked) {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.stage-card.banned {
+  cursor: not-allowed;
+}
+
+.stage-card.picked {
+  border-color: var(--accent-pick);
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+}
+
+.stage-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+}
+
+.stage-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 6px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Banned overlay */
+.stage-card.banned::after {
+  content: '✕';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(231, 76, 60, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Picked overlay */
+.stage-card.picked::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: var(--accent-pick);
+  z-index: 10;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================================
+   ACTION BUTTONS
+   ============================================================================ */
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.undo-btn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--text-secondary);
+}
+
+.undo-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.undo-btn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.reset-btn {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  color: white;
+}
+
+.reset-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* ============================================================================
+   ARBITER CONTROLS
+   ============================================================================ */
+
+.arbiter-controls {
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.force-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  color: white;
+}
+
+.force-btn:hover {
+  filter: brightness(1.1);
+}
+
+.force-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   MATCH INFO
+   ============================================================================ */
+
+.match-info {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  padding: 8px;
+  opacity: 0.7;
+}
+
+#matchIdDisplay {
+  font-family: monospace;
+  color: var(--text-primary);
+}
+
+/* ============================================================================
+   TOAST NOTIFICATIONS
+   ============================================================================ */
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast {
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.3s ease;
+  border-left: 4px solid var(--accent-ban);
+}
+
+.toast.success {
+  border-left-color: var(--accent-pick);
+}
+
+.toast.error {
+  border-left-color: var(--accent-ban);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   CUSTOM MODAL (replaces browser confirm)
+   ============================================================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: modalEnter 0.3s ease;
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.modal-body {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-btn-cancel {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 2px solid var(--text-secondary);
+}
+
+.modal-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-btn-confirm {
+  background: linear-gradient(135deg, var(--accent-winner) 0%, #c0392b 100%);
+  color: white;
+}
+
+.modal-btn-confirm:hover {
+  filter: brightness(1.1);
+}

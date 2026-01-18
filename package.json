@@ -1,0 +1,26 @@
+{
+  "name": "smash-obs-api",
+  "version": "1.0.0",
+  "description": "Stage selection system for Smash tournaments with OBS overlay",
+  "author": "Julio Rubio",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "smash",
+    "tournament",
+    "obs",
+    "overlay"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

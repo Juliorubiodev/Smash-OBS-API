@@ -1,0 +1,47 @@
+[
+    {
+        "id": "battlefield",
+        "name": "Battlefield",
+        "short": "BF"
+    },
+    {
+        "id": "small-battlefield",
+        "name": "Small Battlefield",
+        "short": "SBF"
+    },
+    {
+        "id": "final-destination",
+        "name": "Final Destination",
+        "short": "FD"
+    },
+    {
+        "id": "smashville",
+        "name": "Smashville",
+        "short": "SV"
+    },
+    {
+        "id": "ps2",
+        "name": "Pokémon Stadium 2",
+        "short": "PS2"
+    },
+    {
+        "id": "town-city",
+        "name": "Town & City",
+        "short": "T&C"
+    },
+    {
+        "id": "yoshis-story",
+        "name": "Yoshi's Story",
+        "short": "YS"
+    },
+    {
+        "id": "hollow-bastion",
+        "name": "Hollow Bastion",
+        "short": "HB"
+    },
+    {
+        "id": "kalos",
+        "name": "Kalos Pokémon League",
+        "short": "KPL"
+    }
+]

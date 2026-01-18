@@ -1,0 +1,88 @@
+<!-- Smash OBS API - Made by: Julio Rubio -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Smash Stage Control</title>
+  <link rel="stylesheet" href="control.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🎮 Stage Control</h1>
+      <div class="connection-status" id="connectionStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">Connecting...</span>
+      </div>
+    </header>
+
+    <!-- Mode Toggle -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" data-mode="G1">Partida 1</button>
+      <button class="mode-btn" data-mode="G2PLUS">Partida 2–5</button>
+    </div>
+
+    <!-- Phase Indicator -->
+    <div class="phase-indicator" id="phaseIndicator">
+      <div class="phase-label" id="phaseLabel">WINNER BAN</div>
+      <div class="phase-counter" id="phaseCounter">Faltan: 3/3</div>
+    </div>
+
+    <!-- Available Stages Indicator -->
+    <div class="available-stages" id="availableStages">
+      <span class="available-label">Disponibles:</span>
+      <span class="available-list" id="availableList">9 stages</span>
+    </div>
+
+    <!-- Stage Grid -->
+    <div class="stage-grid" id="stageGrid">
+      <!-- Stages will be inserted here by JS -->
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="action-btn undo-btn" id="undoBtn" disabled>
+        ↩️ Undo
+      </button>
+      <button class="action-btn reset-btn" id="resetBtn">
+        🔄 Reset
+      </button>
+    </div>
+
+    <!-- Arbiter Controls -->
+    <div class="arbiter-controls">
+      <button class="action-btn force-btn" id="forcePhaseBtn">
+        ⏭️ Force Phase
+      </button>
+    </div>
+
+    <!-- Match Info -->
+    <div class="match-info" id="matchInfo">
+      Match: <span id="matchIdDisplay">--</span>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <!-- Custom Modal (replaces browser confirm) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header" id="modalHeader">Confirmar</div>
+      <div class="modal-body" id="modalBody">¿Estás seguro?</div>
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-cancel" id="modalCancel">Cancelar</button>
+        <button class="modal-btn modal-btn-confirm" id="modalConfirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="control.js"></script>
+</body>
+
+</html>

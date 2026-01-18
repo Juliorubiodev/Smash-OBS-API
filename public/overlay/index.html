@@ -1,0 +1,27 @@
+<!-- Smash OBS API - Made by: Julio Rubio -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>Smash Stage Overlay</title>
+    <link rel="stylesheet" href="overlay.css">
+</head>
+
+<body>
+    <!-- Stage Grid (optional, hidden by default) -->
+    <div class="stage-grid-container" id="stageGridContainer">
+        <div class="stage-grid" id="stageGrid"></div>
+    </div>
+
+    <!-- Ban History - PERSISTENT TILES (main display) -->
+    <div class="ban-history-container" id="banHistoryContainer">
+        <!-- Tiles rendered by JS on state:update -->
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="overlay.js"></script>
+</body>
+
+</html>
